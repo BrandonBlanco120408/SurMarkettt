@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/FRGContainerPadding"
-    >
+    />
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -36,7 +36,7 @@
         android:textSize="@dimen/FRGLabelTextSize" />
 
     <EditText
-        android:id="@+id/etx_FRGLogin_UserName"
+        android:id="@+id/EXT_FRGLogin_UserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/FRGLogin_ETXUserName"
@@ -96,5 +96,5 @@
             android:text="@string/FRGLogin_BTNRegister"
             android:textSize="@dimen/FRGButtonTextSize"
             android:textStyle="bold" />
-    </linearLayout>
+
 </ScrollView>
