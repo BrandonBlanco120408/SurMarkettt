@@ -55,12 +55,12 @@ class FragmentLogin : Fragment() {
         if (!verifyIntegrity(user, password)){
             return
         }
-            if (verifyCredentials(user, password)){
-                Toast.makeText(requireContext(),getString(R.string.loginWelcome), Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(requireContext(),getString(R.string.loginError), Toast.LENGTH_SHORT).show()
-            }
+        if (verifyCredentials(user, password)){
+            Toast.makeText(requireContext(),getString(R.string.loginWelcome), Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText(requireContext(),getString(R.string.loginError), Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun verifyIntegrity(user: String, password: String): Boolean {
@@ -83,5 +83,6 @@ class FragmentLogin : Fragment() {
     }
     private fun verifyCredentials(user: String, password: String): Boolean {
         return user=="admin" && password=="123456"
+
     }
 }
