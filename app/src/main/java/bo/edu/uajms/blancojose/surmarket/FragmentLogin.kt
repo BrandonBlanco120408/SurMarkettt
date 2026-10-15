@@ -11,78 +11,86 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 class FragmentLogin : Fragment() {
-    private lateinit var EXT_FRGLogin_UserName: EditText
+    private lateinit var ETX_FRGLogin_UserName: EditText
     private lateinit var ETX_FRGLogin_Password: EditText
     private lateinit var TXV_FRGLogin_RecoverPassword: TextView
     private lateinit var BTN_FRGLogin_Login: Button
     private lateinit var BTN_FRGLogin_Register: Button
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login,container,false)
+        return inflater.inflate(R.layout.fragment_login,container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initalizeViews(view)
-        configureListeners()
+        initializeViews(view)
+        configureListener()
     }
-    private fun initalizeViews(view: View) {
-        EXT_FRGLogin_UserName =view.findViewById(R.id.EXT_FRGLogin_UserName)
-        ETX_FRGLogin_Password=view.findViewById(R.id.ETX_FRGLogin_Password)
-        TXV_FRGLogin_RecoverPassword=view.findViewById(R.id.TXV_FRGLogin_RecoverPassword)
-        BTN_FRGLogin_Login=view.findViewById(R.id.BTN_FRGLogin_Login)
-        BTN_FRGLogin_Register=view.findViewById(R.id.BTN_FRGLogin_Register)
+
+    private fun initializeViews(view: View) {
+        ETX_FRGLogin_UserName = view.findViewById(R.id.ETX_FRGLogin_UserName)
+        ETX_FRGLogin_Password = view.findViewById(R.id.ETX_FRGLogin_Password)
+        TXV_FRGLogin_RecoverPassword = view.findViewById(R.id.TXV_FRGLogin_RecoverPassword)
+        BTN_FRGLogin_Login = view.findViewById(R.id.BTN_FRGLogin_Login)
+        BTN_FRGLogin_Register = view.findViewById(R.id.BTN_FRGLogin_Register)
+
     }
-    private fun configureListeners() {
+    private fun configureListener() {
         TXV_FRGLogin_RecoverPassword.setOnClickListener() {
 
         }
         BTN_FRGLogin_Login.setOnClickListener() {
-            SignIn()
+            SingIn()
+
         }
         BTN_FRGLogin_Register.setOnClickListener() {
 
         }
     }
-    private fun SignIn(){
-        val user=EXT_FRGLogin_UserName.text.toString().trim()
-        val password= ETX_FRGLogin_Password.text.toString().trim()
-        if (!verifyIntegrity(user, password)){
+
+    private fun SingIn(){
+        val user = ETX_FRGLogin_UserName.text.toString().trim()
+        val password = ETX_FRGLogin_Password.text.toString().trim()
+        if (!verifyIntegrity(user,password))
+        {
             return
         }
-        if (verifyCredentials(user, password)){
+        if (verifyCredentials(user,password))
+        {
             Toast.makeText(requireContext(),getString(R.string.loginWelcome), Toast.LENGTH_SHORT).show()
         }
-        else{
+        else
+        {
             Toast.makeText(requireContext(),getString(R.string.loginError), Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun verifyIntegrity(user: String, password: String): Boolean {
-        var res=true
+        var res = true
         if (user.isEmpty()){
-            EXT_FRGLogin_UserName.error = getString(R.string.userEmpty)
+            ETX_FRGLogin_UserName.error = getString(R.string.userEmpty)
             res=false
         }
-        else{
-            EXT_FRGLogin_UserName.error = null
+        else
+        {
+            ETX_FRGLogin_UserName.error = null
         }
         if (password.isEmpty()){
             ETX_FRGLogin_Password.error = getString(R.string.passwordEmpty)
             res=false
         }
-        else{
+        else
+        {
             ETX_FRGLogin_Password.error = null
         }
         return res
     }
     private fun verifyCredentials(user: String, password: String): Boolean {
         return user=="admin" && password=="123456"
-
     }
+
 }
